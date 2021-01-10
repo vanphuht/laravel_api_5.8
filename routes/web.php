@@ -16,3 +16,7 @@
 // });
 Route::get('/','HomeController@index');
 Route::get('/bai-viet/{id}','BaivietController@show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
