@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\CategoryPost;
 use Illuminate\Http\Request;
+use App\CategoryPost;
+use App\Post;
+use DB;
 
-class CategoryPostController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,13 @@ class CategoryPostController extends Controller
      */
     public function index()
     {
-        //
+        $data['posts']=Post::all();
+        // $data['news_posts']=Post::orderBy('created_at','DESC')->take(5)->get();
+        $data['news_posts']=Post::orderBy(DB::raw('RAND()'))->take(5)->get();
+        $data['categorys']=CategoryPost::all();
+        $data['post_views']=Post::orderBy('views','DESC')->take(5)->get();
+
+        return view('pages.main',$data);
     }
 
     /**
@@ -41,10 +49,10 @@ class CategoryPostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CategoryPost  $categoryPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CategoryPost $categoryPost)
+    public function show($id)
     {
         //
     }
@@ -52,10 +60,10 @@ class CategoryPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CategoryPost  $categoryPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoryPost $categoryPost)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +72,10 @@ class CategoryPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CategoryPost  $categoryPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategoryPost $categoryPost)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +83,10 @@ class CategoryPostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CategoryPost  $categoryPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryPost $categoryPost)
+    public function destroy($id)
     {
         //
     }

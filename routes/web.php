@@ -14,9 +14,9 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/','HomeController@index');
+Route::get('/','IndexController@index');
 Route::get('/bai-viet/{id}','BaivietController@show');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');

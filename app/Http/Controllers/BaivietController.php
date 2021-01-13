@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CategoryPost;
+use App\Post;
 
 class BaivietController extends Controller
 {
@@ -13,7 +15,7 @@ class BaivietController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -45,7 +47,9 @@ class BaivietController extends Controller
      */
     public function show($id)
     {
-        return view('pages.detail');
+        $data['post']=Post::find($id);
+        $data['categorys']=CategoryPost::all();
+        return view('pages.detail',$data);
     }
 
     /**

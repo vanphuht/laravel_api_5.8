@@ -5,10 +5,9 @@
              <span class="menu"></span>
                 <ul class="navig">
                     <li><a href="{{url('/')}}"  class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="typo.html">Typo</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    @foreach ($categorys as $category)
+                    <li><a href="{{route('danh-muc.show',['id'=>$category->id, 'slug'=>Str::slug($category->title) ] )}}">{{$category->title}}</a></li>
+                    @endforeach
                 </ul>
         </div>
         <div class="header-right">
